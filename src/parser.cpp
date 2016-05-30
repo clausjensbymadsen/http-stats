@@ -87,7 +87,7 @@ parse_results parse(string_view line) {
     skip_whitespace(line, index);
     string = parse_token(line, index);
     if (string != not_applicable)
-      results.identity = string;
+      results.user_name = string;
 
     skip_whitespace(line, index);
     string = parse_string(line, index, '[', ']');

@@ -96,8 +96,20 @@ parse_results parse(string_view line) {
 
     skip_whitespace(line, index);
     string = parse_string(line, index);
-    if (string != not_applicable)
-      results.request = string;
+    if (string != not_applicable) {
+      string_view::size_type subindex = 0;
+
+      string_view substring = parse_token(string, subindex);
+      results.method = request_method::unknown;
+      if (substring == "GET") results.method = request_method::get;
+      if (substring == "POST") results.method = request_method::post;
+
+      skip_whitespace(string, subindex);
+      results.request = parse_token(string, subindex);
+
+      skip_whitespace(string, subindex);
+      results.protocol = parse_token(string, subindex);
+    }
 
     skip_whitespace(line, index);
     string = parse_token(line, index);

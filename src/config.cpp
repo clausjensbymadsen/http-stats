@@ -26,7 +26,7 @@ configuration setup(int argc, const char* argv[]) {
   }
 
   // Default file name if no file names are specified.
-  if (result.files.size() == 0) result.files.push_back("access2.log");
+  if (result.files.size() == 0) result.files.push_back("access.log");
 
   return result;
 }
